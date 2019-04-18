@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\PlayerAttacks.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Restarter.cs" />
+    <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
     <Compile Include="Assets\Unrelated assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
     <Compile Include="Assets\Unrelated assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
     <Compile Include="Assets\Unrelated assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />

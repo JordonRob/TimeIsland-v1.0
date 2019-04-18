@@ -6,6 +6,7 @@ public class PlayerAttacks : MonoBehaviour
 {
     private bool punching = false;
     private bool shooting = false;
+    private Animator anim;
 
     private float attackTimer = 0;
     private float attackCD = 0.5f;
@@ -17,6 +18,8 @@ public class PlayerAttacks : MonoBehaviour
         punching = false;
         shooting = false;
         punch.enabled = false;
+        anim = GetComponent<Animator>();
+        anim.SetBool("punch", punching);
     }
 
     private void Update()
@@ -26,6 +29,8 @@ public class PlayerAttacks : MonoBehaviour
             punching = true;
             attackTimer = attackCD;
             punch.enabled = true;
+            anim.SetBool("punch", punching);
+
         }
 
         if(punching)
@@ -39,6 +44,8 @@ public class PlayerAttacks : MonoBehaviour
             {
                 punching = false;
                 punch.enabled = false;
+                anim.SetBool("punch", punching);
+
             }
         }
     }
