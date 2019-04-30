@@ -8,6 +8,12 @@ TagManager:
   - Enemy Attack
   - Player Attacks
   - punch
+  - Spikes
+  - vine
+  - WaveStart
+  - Detection
+  - MiniHealthPack
+  - HealthPack
   layers:
   - Default
   - TransparentFX
@@ -17,9 +23,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - vine
+  - Enemy
+  - Player
   - 
   - 
   - 
