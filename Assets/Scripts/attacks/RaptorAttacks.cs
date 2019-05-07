@@ -39,7 +39,7 @@ public class RaptorAttacks : MonoBehaviour
     {
         if (EnemyHealth.AliveCheck.Alive)
             ColDist = Raptor.Distance(PlayerCol);
-            Debug.Log(ColDist.distance);
+            //Debug.Log(ColDist.distance);
    
             if (!bitting && ColDist.distance < minAttackDistance)
             {
@@ -47,7 +47,7 @@ public class RaptorAttacks : MonoBehaviour
                 attackDuration = BiteCD;
                 Bite.enabled = true;
                 anim.SetBool("bitting", bitting);
-                Debug.Log("Attacked");
+                //Debug.Log("Attacked");
             }
 
 
@@ -57,17 +57,17 @@ public class RaptorAttacks : MonoBehaviour
             if (attackDuration > 0)
             {
                 attackDuration -= Time.deltaTime;
-                Debug.Log("started cd");
+               // Debug.Log("started cd");
 
             }
             else //resets the punch timer and hitbox
             {
                 bitting = false;
                 Bite.enabled = false;
-                Debug.Log("collider off, idk i cant see it go off");
+                //Debug.Log("collider off");
 
                 anim.SetBool("bitting", bitting);
-                Debug.Log("ended CD");
+                //Debug.Log("ended CD");
 
             }
         }

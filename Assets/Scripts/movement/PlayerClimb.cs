@@ -27,8 +27,6 @@ public class PlayerClimb : MonoBehaviour
 
             isClimbing = true;
 
-            Debug.Log("fuckin climb");
-
         }
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))

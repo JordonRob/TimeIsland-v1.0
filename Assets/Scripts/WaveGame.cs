@@ -6,22 +6,32 @@ public class WaveGame : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public GameObject RaptorPrefab;
-    public GameObject MiniHealthPack;
-    public GameObject MegaHealthPack;
     public GameObject Reward;
+    public static WaveGame DeathTracker;
+    [HideInInspector]
+    public int raptorCount;
 
-    private int spawnTrigger = 3;
+
     private int spawnCount;
-    private int raptorCount;
     private bool isItOver;
     private bool initialTrigger;
 
     void Awake()
     {
-
+        initialTrigger = false;
+        isItOver = false;
+        raptorCount = 4;
+        DeathTracker = this;
     }
 
-
+    void FixedUpdate()
+    {
+        if(raptorCount <= 0 && !isItOver)
+        {
+            isItOver = true;
+            reward();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -34,42 +44,33 @@ public class WaveGame : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Enemy")
-        {
-            isItOver = false;
-        }
-        else
-            isItOver = true;
-
-    }
-
     void MiniGame()
     {  
             spawn();
             Debug.Log("Triggered Spawn");
 
-        if (isItOver == true)
-        {
-
-        }
     }
 
     void spawn()
     {
 
-        raptorCount = 4;
+        spawnCount = 3;
 
-        while (raptorCount >= 0)
+        while (spawnCount >= 0)
         {
-            int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
-            Instantiate(RaptorPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            raptorCount--;
+            Instantiate(RaptorPrefab, spawnPoints[spawnCount].position, spawnPoints[spawnCount].rotation);
+            spawnCount--;
         }
     }
 
-
+    void reward()
+    {
+        if(isItOver == true)
+        {
+            Debug.Log("Spawn Reward");
+            Instantiate(Reward);
+        }
+    }
     
 }

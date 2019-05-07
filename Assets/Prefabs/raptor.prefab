@@ -85,6 +85,8 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 10
   Alive: 1
+  flashingLength: 0.2
+  EnemySprite: {fileID: 7845432236166058804}
 --- !u!1 &7845432235789130279
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +219,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

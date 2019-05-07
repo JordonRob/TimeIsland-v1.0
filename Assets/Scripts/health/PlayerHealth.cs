@@ -2,33 +2,86 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets._2D;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     Slider healthBar;
 
+    public static PlayerHealth DeadCheck;
+
+    public GameObject PlayerObj;
     public Rigidbody2D Player;
     public float KnockBackX;
     public float KnockBackY;
     public float maxHealth = 100;
     public float currentHealth;
+
+    private bool Flashing;
+    public float flashingLength;
+    private float flashCounter;
+    
+
+    public SpriteRenderer PlayerSprite;
     
 
     private Vector2 opposite;
     [HideInInspector]
-
+    public bool PlayerDead;
 
     void Start()
     {
         healthBar.value = maxHealth;
         currentHealth = healthBar.value;
+        Flashing = false;
+        PlayerDead = false;
+        DeadCheck = this;
+    }
+
+    void Update()
+    {
+        opposite = -Player.velocity;
+
+
+
+        if (Flashing)
+        {
+            if (flashCounter > flashingLength * .66f)
+            {
+                PlayerSprite.color = new Color(PlayerSprite.color.r, PlayerSprite.color.g, PlayerSprite.color.b, 0f);
+                //Debug.Log("You are now invisible");
+
+            }
+            else if (flashCounter > flashingLength * .33f)
+            {
+                PlayerSprite.color = new Color(PlayerSprite.color.r, PlayerSprite.color.g, PlayerSprite.color.b, 1f);
+
+            }
+            else if (flashCounter > 0f)
+            {
+                PlayerSprite.color = new Color(PlayerSprite.color.r, PlayerSprite.color.g, PlayerSprite.color.b, 0f);
+
+            }
+            else
+            {
+                //returns the players full alpha value so you can see the player character when it stops flashing
+                PlayerSprite.color = new Color(PlayerSprite.color.r, PlayerSprite.color.g, PlayerSprite.color.b, 1f);
+                Flashing = false;
+            }
+
+            flashCounter -= Time.deltaTime;
+        }
+
+        playerDead();
     }
 
     void TakeDamage(float Damage)
     {
         healthBar.value -= Damage;
         currentHealth = healthBar.value;
+        Flashing = true;
+        flashCounter = flashingLength;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -66,8 +119,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Update()
+    void playerDead()
     {
-        opposite = -Player.velocity;
+        if(currentHealth <= 0f)
+        {
+            PlayerDead = true;
+        }
     }
 }

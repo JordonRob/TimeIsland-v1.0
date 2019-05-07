@@ -76,6 +76,9 @@
     <Compile Include="Assets\Scripts\camera and aesthetics\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\camera and aesthetics\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\Destroy.cs" />
+    <Compile Include="Assets\Scripts\EggReward.cs" />
+    <Compile Include="Assets\Scripts\GameConroller.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GunRotation.cs" />
     <Compile Include="Assets\Scripts\health\BossHealth.cs" />
     <Compile Include="Assets\Scripts\health\EnemyHealth.cs" />
@@ -84,8 +87,8 @@
     <Compile Include="Assets\Scripts\movement\Platformer2DUserControl.cs" />
     <Compile Include="Assets\Scripts\movement\PlatformerCharacter2D.cs" />
     <Compile Include="Assets\Scripts\movement\PlayerClimb.cs" />
-    <Compile Include="Assets\Scripts\Restarter.cs" />
     <Compile Include="Assets\Scripts\WaveGame.cs" />
+    <Compile Include="Assets\Scripts\WaveRaptors.cs" />
     <Compile Include="Assets\Unrelated assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
     <Compile Include="Assets\Unrelated assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
     <Compile Include="Assets\Unrelated assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
