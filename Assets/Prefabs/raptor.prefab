@@ -273,7 +273,7 @@ MonoBehaviour:
   BiteCD: 1.5
   Bite: {fileID: 5173878054836500955}
   Raptor: {fileID: 8187350215147218406}
-  minAttackDistance: 0.5
+  minAttackDistance: 1
 --- !u!1 &7845432236435082244
 GameObject:
   m_ObjectHideFlags: 0

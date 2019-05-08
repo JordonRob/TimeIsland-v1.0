@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets._2D;
 
@@ -17,26 +18,32 @@ public class PlayerHealth : MonoBehaviour
     public float KnockBackY;
     public float maxHealth = 100;
     public float currentHealth;
+    private int dieOnce = 0;
 
     private bool Flashing;
     public float flashingLength;
     private float flashCounter;
+
+    public Animator DeathScreen;
+    public SpriteRenderer PlayerSprite;
+    public Transform DeathScreenFollow;
+    public GameObject DeathScreenObj;
     
 
-    public SpriteRenderer PlayerSprite;
-    
+
 
     private Vector2 opposite;
     [HideInInspector]
     public bool PlayerDead;
 
-    void Start()
+    void Awake()
     {
         healthBar.value = maxHealth;
         currentHealth = healthBar.value;
         Flashing = false;
         PlayerDead = false;
         DeadCheck = this;
+        DeathScreen.SetBool("GameOver", PlayerDead);
     }
 
     void Update()
@@ -82,6 +89,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = healthBar.value;
         Flashing = true;
         flashCounter = flashingLength;
+        playerDead();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -123,7 +131,27 @@ public class PlayerHealth : MonoBehaviour
     {
         if(currentHealth <= 0f)
         {
-            PlayerDead = true;
+            if (dieOnce < 2)
+            {
+                PlayerDead = true;
+                Instantiate(DeathScreenObj);
+                Camera2DFollow.SwitchFollow.target = DeathScreenFollow;
+                Camera2DFollow.SwitchFollow.cameraSize = Camera.main.orthographicSize += 160f;
+                DeathScreen.SetBool("GameOver", PlayerDead);
+                dieOnce++;
+            }
+            restart();
+
+
+        }
+    }
+
+    void restart()
+    {
+        if (PlayerHealth.DeadCheck.PlayerDead && Input.GetKeyDown(KeyCode.R))
+        {
+            dieOnce = 0;
+            SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
         }
     }
 }

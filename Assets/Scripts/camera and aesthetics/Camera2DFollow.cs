@@ -6,6 +6,7 @@ namespace UnityStandardAssets._2D
     public class Camera2DFollow : MonoBehaviour
     {
         public Transform target;
+        public float cameraSize;
         public float damping = 1;
         public float lookAheadFactor = 3;
         public float lookAheadReturnSpeed = 0.5f;
@@ -16,12 +17,16 @@ namespace UnityStandardAssets._2D
         private Vector3 m_CurrentVelocity;
         private Vector3 m_LookAheadPos;
 
+        public static Camera2DFollow SwitchFollow;
+
         // Use this for initialization
         private void Start()
         {
             m_LastTargetPosition = target.position;
             m_OffsetZ = (transform.position - target.position).z;
             transform.parent = null;
+            SwitchFollow = this;
+            cameraSize = Camera.main.orthographicSize;
         }
 
 

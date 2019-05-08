@@ -21,7 +21,7 @@ public class EggReward : MonoBehaviour
         if(Col.gameObject.tag == "Player")
         {
             HasReward = true;
-
+            Debug.Log("HasReward True");
             Destroy(Reward);
         }
     }
